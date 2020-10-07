@@ -16,6 +16,7 @@ public class Adventurer2Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector3 (Adventurer2Move.position.x + offset.x, Adventurer2Move.position.y + offset.y, offset.z);
         float xSpeed = 5.0f;
         float ySpeed = 5.0f;
         if (Input.GetKey("a"))

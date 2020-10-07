@@ -16,15 +16,19 @@ public class Adventurer2Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3 (Adventurer2Move.position.x + offset.x, Adventurer2Move.position.y + offset.y, offset.z);
+        Vector2 velocity = rb.velocity;
+
+        velocity.x = 0;
+        velocity.y = 7;
+
+
         float xSpeed = 5.0f;
         float ySpeed = 5.0f;
         if (Input.GetKey("a"))
         {
             // registers a key held down and returns true
 
-            xSpeed = -5.0f;
-            transform.position += new Vector3(xSpeed * Time.deltaTime, 0, 0);
+            rb.velocity = new Vector2(-5, 0);
         }
 
         
@@ -33,23 +37,15 @@ public class Adventurer2Move : MonoBehaviour
         {
             // registers a key held down and returns true
 
-            xSpeed = 5.0f;
-            transform.position += new Vector3(xSpeed * Time.deltaTime, 0, 0);
+            rb.velocity = new Vector2(5, 0);
         }
 
         if (Input.GetKey("w"))
         {
-            rb.velocity = new Vector3(0, 10, 0);
+            rb.velocity=velocity;
         }
         return;
 
-        if (Input.GetKey("s"))
-        {
-            // registers a key held down and returns true
-
-            ySpeed = -5.0f;
-            transform.position += new Vector3(0, ySpeed * Time.deltaTime, 0);
-        }
 
     } 
 }

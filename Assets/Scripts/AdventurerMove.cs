@@ -5,57 +5,55 @@ using UnityEngine;
 public class AdventurerMove : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Rigidbody2D rigidbody2d;
+    public BoxCollider2D boxCollider2d;
+    //specifies which layers we want to hit with our ray cast (in this case only the "platforms" layer)
+    [SerializeField] private LayerMask platformsLayerMask;
+    float moveSpeed = 8f;
 
-    Rigidbody2D rb;
+    private bool isGrounded()
+    {
+        RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, 1f, platformsLayerMask);
+        return raycastHit2d.collider != null;
+    }
+
     
-
     
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidbody2d = transform.GetComponent<Rigidbody2D>();
+        boxCollider2d = transform.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 velocity = rb.velocity;
 
-        velocity.x = 0;
-        velocity.y = 7;
-        
-
-
-        float xSpeed = 5.0f;
-        float ySpeed = 5.0f;
-        if (Input.GetKey("left"))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             // registers a key held down and returns true
+            rigidbody2d.velocity = new Vector2(-moveSpeed, rigidbody2d.velocity.y);
 
-            rb.velocity = new Vector2(-5, 0);
+            
         }
 
         
 
-        if (Input.GetKey("right"))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             // registers a key held down and returns true
+            rigidbody2d.velocity = new Vector2(+moveSpeed, rigidbody2d.velocity.y);
 
-            rb.velocity = new Vector2(5, 0);
+            
         }
 
-        if (Input.GetKey("up"))
+        if (isGrounded() && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            rb.velocity=velocity;
+            float jumpVelocity = 20f;
+            rigidbody2d.velocity = Vector2.up * jumpVelocity;
         }
         return;
 
-        if (Input.GetKey("down"))
-        {
-            // registers a key held down and returns true
-
-            ySpeed = -5.0f;
-            transform.position += new Vector3(0, ySpeed * Time.deltaTime, 0);
-        }
 
     } 
 }

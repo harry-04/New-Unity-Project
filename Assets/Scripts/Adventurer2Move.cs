@@ -31,7 +31,7 @@ public class Adventurer2Move : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            // registers a key held down and returns true
+            // registers a key held down and returns true (rigidbody2d.velocity is just a longer version of rb.velocity)
             rigidbody2d.velocity = new Vector2(-moveSpeed, rigidbody2d.velocity.y);
 
             

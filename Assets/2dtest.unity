@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52addf5c29b2fa14ba0165d176a8a3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpSprite: {fileID: 21300000, guid: 3ae4ce1525af481428696e129f8ace29, type: 3}
+  standSprite: {fileID: 21300000, guid: df57b62f6c8b60b4ca5a09c0973fb560, type: 3}
   rigidbody2d: {fileID: 0}
   boxCollider2d: {fileID: 0}
   platformsLayerMask:

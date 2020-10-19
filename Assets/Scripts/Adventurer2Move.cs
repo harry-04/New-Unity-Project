@@ -13,6 +13,9 @@ public class Adventurer2Move : MonoBehaviour
     //specifies which layers we want to hit with our ray cast (in this case only the "platforms" layer)
     [SerializeField] private LayerMask platformsLayerMask;
     float moveSpeed = 8f;
+    public Transform GroundCheckPoint;
+    public float GroundCheckRadius;
+    private bool isTouchingGround;
 
     private bool isGrounded()
     {
@@ -32,6 +35,8 @@ public class Adventurer2Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        isTouchingGround = Physics2D.OverlapCircle(GroundCheckPoint.position, GroundCheckRadius, platformsLayerMask);
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -59,9 +64,18 @@ public class Adventurer2Move : MonoBehaviour
         }
         return;
 
-        if (rigidbody2d.velocity = new Vector2(0 + 0)
+        if (isTouchingGround == false)
         {
+            sr = GetComponent<SpriteRenderer>();
             sr.sprite = jumpSprite;
         }
+
+        if (isTouchingGround)
+        {
+            sr = GetComponent<SpriteRenderer>();
+            sr.sprite = standSprite;
+        }
+
+
     }
 }

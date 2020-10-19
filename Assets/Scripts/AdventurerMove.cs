@@ -5,7 +5,7 @@ using UnityEngine;
 public class AdventurerMove : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Rigidbody2D rb;
+    public Rigidbody2D rigidbody2d;
     public BoxCollider2D boxCollider2d;
     //specifies which layers we want to hit with our ray cast (in this case only the "platforms" layer)
     [SerializeField] private LayerMask platformsLayerMask;
@@ -21,7 +21,7 @@ public class AdventurerMove : MonoBehaviour
     
     void Start()
     {
-        rb = transform.GetComponent<Rigidbody2D>();
+        rigidbody2d = transform.GetComponent<Rigidbody2D>();
         boxCollider2d = transform.GetComponent<BoxCollider2D>();
     }
 
@@ -32,7 +32,7 @@ public class AdventurerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             // registers a key held down and returns true
-            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+            rigidbody2d.velocity = new Vector2(-moveSpeed, rigidbody2d.velocity.y);
 
             
         }
@@ -42,7 +42,7 @@ public class AdventurerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             // registers a key held down and returns true
-            rb.velocity = new Vector2(+moveSpeed, rb.velocity.y);
+            rigidbody2d.velocity = new Vector2(+moveSpeed, rigidbody2d.velocity.y);
 
             
         }
@@ -50,7 +50,7 @@ public class AdventurerMove : MonoBehaviour
         if (isGrounded() && Input.GetKeyDown(KeyCode.UpArrow))
         {
             float jumpVelocity = 20f;
-            rb.velocity = Vector2.up * jumpVelocity;
+            rigidbody2d.velocity = Vector2.up * jumpVelocity;
         }
         return;
 

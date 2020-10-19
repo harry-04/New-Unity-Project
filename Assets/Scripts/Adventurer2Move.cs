@@ -5,14 +5,10 @@ using UnityEngine;
 public class Adventurer2Move : MonoBehaviour
 {
     // Start is called before the first frame update
-<<<<<<< HEAD
     SpriteRenderer sr;
     public Sprite jumpSprite;
     public Sprite standSprite;
     public Rigidbody2D rigidbody2d;
-=======
-    public Rigidbody2D rb;
->>>>>>> d053126bc3a4dc38cf9a3d1b574cecb603ea37e9
     public BoxCollider2D boxCollider2d;
     //specifies which layers we want to hit with our ray cast (in this case only the "platforms" layer)
     [SerializeField] private LayerMask platformsLayerMask;
@@ -28,12 +24,8 @@ public class Adventurer2Move : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD
         sr = GetComponent<SpriteRenderer>();
         rigidbody2d = transform.GetComponent<Rigidbody2D>();
-=======
-        rb = transform.GetComponent<Rigidbody2D>();
->>>>>>> d053126bc3a4dc38cf9a3d1b574cecb603ea37e9
         boxCollider2d = transform.GetComponent<BoxCollider2D>();
     }
 
@@ -43,8 +35,8 @@ public class Adventurer2Move : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            // registers a key held down and returns true
-            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+            // registers a key held down and returns true (rigidbody2d.velocity is just a longer version of rb.velocity)
+            rigidbody2d.velocity = new Vector2(-moveSpeed, rigidbody2d.velocity.y);
 
 
         }
@@ -54,7 +46,7 @@ public class Adventurer2Move : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             // registers a key held down and returns true
-            rb.velocity = new Vector2(+moveSpeed, rb.velocity.y);
+            rigidbody2d.velocity = new Vector2(+moveSpeed, rigidbody2d.velocity.y);
 
 
         }
@@ -62,12 +54,8 @@ public class Adventurer2Move : MonoBehaviour
         if (isGrounded() && Input.GetKeyDown(KeyCode.W))
         {
             float jumpVelocity = 20f;
-<<<<<<< HEAD
             rigidbody2d.velocity = Vector2.up * jumpVelocity;
             sr.sprite = jumpSprite;
-=======
-            rb.velocity = Vector2.up * jumpVelocity;
->>>>>>> d053126bc3a4dc38cf9a3d1b574cecb603ea37e9
         }
         return;
 
